@@ -10,15 +10,18 @@
 ;; Separator: /
 
 ;;; Commentary:
-;;
+;; This package defines a keymap for inserting Greek Unicode letters (and math symbols as a bonus).
+;; Just bind this map to a key (described below) and you can quickly insert Greek letters by typing the assigned key followed by the letter.
 ;; 
 
 ;;; Instructions:
 ;;
 ;; INSTALLATION
 ;;
-;; If you install from melpa: nothing necessary, should work out of the box.
-;; If you install manually: (require 'greek-unicode-insert)
+;; If you install from melpa: No need to require anything, just set the key as described below. 
+;; If you install manually:
+;;    (require 'greek-unicode-insert)
+;;    (global-set-key "\M-8" 'greek-unicode-insert-map)
 
 ;;; License:
 ;;
@@ -40,25 +43,9 @@
 ;;; Code:
 
 ;;;###autoload
-(defcustom greek-unicode-insert-key nil
-  "Key which will be bound to the `greek-unicode-insert-map'.
-
-I recommend seeting this to semthing quick like \"\\M-8\" or \"\\C-x\\C-u\". "
-  :type 'key-sequence
-  :group 'greek-unicode-insert
-  :package-version '(greek-unicode-insert . "1.0"))
-
-;;;###autoload
-(defun greek-unicode-insert-define-keys ()
-  "Define everything."
-  (interactive)
-
-  (unless greek-unicode-insert-key
-    (error "`greek-unicode-insert-key' isn't defined."))
+(progn
   
   (define-prefix-command 'greek-unicode-insert-map)
-  (global-set-key greek-unicode-insert-key 'greek-unicode-insert-map)
-
   ;; Lowercase Greek
   (define-key greek-unicode-insert-map "\M-s" "ς")
   (define-key greek-unicode-insert-map "a" "α")
@@ -133,7 +120,6 @@ I recommend seeting this to semthing quick like \"\\M-8\" or \"\\C-x\\C-u\". "
   (define-key greek-unicode-insert-map "$" "∬")
   (define-key greek-unicode-insert-map "\M-4" "∮")
   (define-key greek-unicode-insert-map "\M-$" "∯")
-
   ;; Arrows
   (define-key greek-unicode-insert-map "" "→")
   (define-key greek-unicode-insert-map [right] "→")
@@ -162,9 +148,6 @@ I recommend seeting this to semthing quick like \"\\M-8\" or \"\\C-x\\C-u\". "
   (define-key greek-unicode-insert-map "\M-]" "∌")
   (define-key greek-unicode-insert-map "\M-{" "⋲")
   (define-key greek-unicode-insert-map "\M-}" "⋺"))
-
-;;;###autoload
-(when greek-unicode-insert-key (greek-unicode-insert-define-keys))
 
 (provide 'greek-unicode-insert)
 ;;; greek-unicode-insert.el ends here.
