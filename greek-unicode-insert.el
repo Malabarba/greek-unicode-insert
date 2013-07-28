@@ -40,7 +40,131 @@
 ;;; Code:
 
 ;;;###autoload
+(defcustom greek-unicode-insert-key nil
+  "Key which will be bound to the `greek-unicode-insert-map'.
 
+I recommend seeting this to semthing quick like \"\\M-8\" or \"\\C-x\\C-u\". "
+  :type 'key-sequence
+  :group 'greek-unicode-insert
+  :package-version '(greek-unicode-insert . "1.0"))
+
+;;;###autoload
+(defun greek-unicode-insert-define-keys ()
+  "Define everything."
+  (interactive)
+
+  (unless greek-unicode-insert-key
+    (error "`greek-unicode-insert-key' isn't defined."))
+  
+  (define-prefix-command 'greek-unicode-insert-map)
+  (global-set-key greek-unicode-insert-key 'greek-unicode-insert-map)
+
+  ;; Lowercase Greek
+  (define-key greek-unicode-insert-map "\M-s" "ς")
+  (define-key greek-unicode-insert-map "a" "α")
+  (define-key greek-unicode-insert-map "b" "β")
+  (define-key greek-unicode-insert-map "c" "χ")
+  (define-key greek-unicode-insert-map "d" "δ")
+  (define-key greek-unicode-insert-map "f" "φ")
+  (define-key greek-unicode-insert-map "h" "η")
+  (define-key greek-unicode-insert-map "i" "ι")
+  (define-key greek-unicode-insert-map "k" "κ")
+  (define-key greek-unicode-insert-map "l" "λ")
+  (define-key greek-unicode-insert-map "m" "μ")
+  (define-key greek-unicode-insert-map "n" "ν")
+  (define-key greek-unicode-insert-map "o" "θ")
+  (define-key greek-unicode-insert-map "p" "π")
+  (define-key greek-unicode-insert-map "r" "ρ")
+  (define-key greek-unicode-insert-map "s" "σ")
+  (define-key greek-unicode-insert-map "t" "τ")
+  (define-key greek-unicode-insert-map "u" "υ")
+  (define-key greek-unicode-insert-map "w" "ω")
+  (define-key greek-unicode-insert-map "x" "ξ")
+  (define-key greek-unicode-insert-map "y" "ψ")
+  (define-key greek-unicode-insert-map "z" "ζ")
+
+  ;; Uppercase Greek
+  (define-key greek-unicode-insert-map "A" "Α")
+  (define-key greek-unicode-insert-map "B" "Β")
+  (define-key greek-unicode-insert-map "C" "Χ")
+  (define-key greek-unicode-insert-map "D" "Δ")
+  (define-key greek-unicode-insert-map "F" "Φ")
+  (define-key greek-unicode-insert-map "H" "Η")
+  (define-key greek-unicode-insert-map "I" "Ι")
+  (define-key greek-unicode-insert-map "K" "Κ")
+  (define-key greek-unicode-insert-map "L" "Λ")
+  (define-key greek-unicode-insert-map "M" "Μ")
+  (define-key greek-unicode-insert-map "O" "Θ")
+  (define-key greek-unicode-insert-map "P" "Π")
+  (define-key greek-unicode-insert-map "R" "Ρ")
+  (define-key greek-unicode-insert-map "S" "Σ")
+  (define-key greek-unicode-insert-map "T" "Τ")
+  (define-key greek-unicode-insert-map "U" "Υ")
+  (define-key greek-unicode-insert-map "W" "Ω")
+  (define-key greek-unicode-insert-map "X" "Ξ")
+  (define-key greek-unicode-insert-map "Y" "Ψ")
+  (define-key greek-unicode-insert-map "Z" "Ζ")
+
+  ;; extras
+  (define-key greek-unicode-insert-map "\M-h" "ℏ")
+  (define-key greek-unicode-insert-map "+" (kbd "±"))
+  (define-key greek-unicode-insert-map "-" "∓")
+  (define-key greek-unicode-insert-map "_" "−")
+  (define-key greek-unicode-insert-map "=" "≅")
+  (define-key greek-unicode-insert-map "\M-=" "≠")
+  (define-key greek-unicode-insert-map "<" "≤")
+  (define-key greek-unicode-insert-map ">" "≥")
+  (define-key greek-unicode-insert-map "|" "‖") 
+  (define-key greek-unicode-insert-map (kbd "C-|") "∥")
+  (define-key greek-unicode-insert-map "2" "√")
+  (define-key greek-unicode-insert-map "" "∞")
+  (define-key greek-unicode-insert-map [M-backspace] "⧞")
+
+  ;; Operations
+  (define-key greek-unicode-insert-map "8" "×")
+  (define-key greek-unicode-insert-map "*" "×")
+  (define-key greek-unicode-insert-map "\M-*" "⊗") 
+  (define-key greek-unicode-insert-map "/" (kbd "÷"))
+  (define-key greek-unicode-insert-map [M-kp-add] "⊕")
+  (define-key greek-unicode-insert-map [M-kp-multiply] "⊗")
+  (define-key greek-unicode-insert-map [M-kp-subtract] "⊖")
+  (define-key greek-unicode-insert-map [M-kp-divide] "⊘")
+  (define-key greek-unicode-insert-map "4" "∫")
+  (define-key greek-unicode-insert-map "$" "∬")
+  (define-key greek-unicode-insert-map "\M-4" "∮")
+  (define-key greek-unicode-insert-map "\M-$" "∯")
+
+  ;; Arrows
+  (define-key greek-unicode-insert-map "" "→")
+  (define-key greek-unicode-insert-map [right] "→")
+  (define-key greek-unicode-insert-map "" "↑")
+  (define-key greek-unicode-insert-map [up] "↑")
+  (define-key greek-unicode-insert-map "" "←")
+  (define-key greek-unicode-insert-map [left] "←")
+  (define-key greek-unicode-insert-map "" "↓")
+  (define-key greek-unicode-insert-map [down] "↓")
+  (define-key greek-unicode-insert-map "." "…") 
+
+  ;; Set Relations
+  (define-key greek-unicode-insert-map "9" "⊂")
+  (define-key greek-unicode-insert-map "0" "⊃")
+  (define-key greek-unicode-insert-map "(" "⊆")
+  (define-key greek-unicode-insert-map ")" "⊇")
+  (define-key greek-unicode-insert-map "\M-9" "⊄")
+  (define-key greek-unicode-insert-map "\M-0" "⊅")
+  (define-key greek-unicode-insert-map "\M-(" "⊈")
+  (define-key greek-unicode-insert-map "\M-)" "⊉")
+  (define-key greek-unicode-insert-map "[" "∈")
+  (define-key greek-unicode-insert-map "]" "∋")
+  (define-key greek-unicode-insert-map "{" "⋶")
+  (define-key greek-unicode-insert-map "}" "⋽")
+  (define-key greek-unicode-insert-map "\M-[" "∉")
+  (define-key greek-unicode-insert-map "\M-]" "∌")
+  (define-key greek-unicode-insert-map "\M-{" "⋲")
+  (define-key greek-unicode-insert-map "\M-}" "⋺"))
+
+;;;###autoload
+(when greek-unicode-insert-key (greek-unicode-insert-define-keys))
 
 (provide 'greek-unicode-insert)
-;;; ___package_name___.el ends here.
+;;; greek-unicode-insert.el ends here.
