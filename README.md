@@ -3,9 +3,8 @@ greek-unicode-insert
 
 Simple keymap to insert Unicode Greek characters in emacs. 
 
-
 Commentary:
-===
+==
 
 This package defines a keymap called `greek-unicode-insert-map`
 which associates greek characters (in unicode format) to their
@@ -22,13 +21,12 @@ Both lower and upper case are included, and math symbols are
 included as a bonus too. Enjoy!
 
 Instructions:
-===
+==
 
-INSTALLATION
-
-If you install from melpa: nothing necessary, should work out of the box.
-If you install manually:
-    (require 'greek-unicode-insert)
-
-In either case, remember to bind the keymap to something (as described above).
+If you install from melpa, just assign the keymap to some key
     (global-set-key "\M-8" 'greek-unicode-insert-map)
+
+If you install manually, require first, then assign the keymap
+    (require 'greek-unicode-insert)
+    (global-set-key "\M-8" 'greek-unicode-insert-map)
+
