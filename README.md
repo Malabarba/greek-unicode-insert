@@ -24,9 +24,11 @@ Instructions:
 ==
 
 If you install from melpa, just assign the keymap to some key
+
     (global-set-key "\M-8" 'greek-unicode-insert-map)
 
 If you install manually, require first, then assign the keymap
+
     (require 'greek-unicode-insert)
     (global-set-key "\M-8" 'greek-unicode-insert-map)
 
