@@ -4,23 +4,34 @@
 
 ;; Author: Artur Malabarba <bruce.connor.am@gmail.com>
 ;; URL: http://github.com/Bruce-Connor/greek-unicode-insert
-;; Version: 1.0
-;; Keywords: 
+;; Version: 1.1
+;; Keywords: convenience
 ;; ShortName: greek-unicode-insert
 ;; Separator: /
 
 ;;; Commentary:
-;; This package defines a keymap for inserting Greek Unicode letters (and math symbols as a bonus).
-;; Just bind this map to a key (described below) and you can quickly insert Greek letters by typing the assigned key followed by the letter.
-;; 
+;;
+;; This package defines a keymap called `greek-unicode-insert-map'
+;; which associates greek characters (in unicode format) to their
+;; (closest) roman keys. Bind this map to whichever key you prefer,
+;; and you'll be able to insert greek letters quickly.
+;;
+;; For instance, you can bind it to
+;;    (global-set-key "\M-8" 'greek-unicode-insert-map)
+;; and you'll be able to insert β by hitting "M-8 b", or insert Ψ by
+;; hitting "M-8 Y".
+;;
+;; Both lower and upper case are included, and math symbols are
+;; included as a bonus too. Enjoy!
 
 ;;; Instructions:
 ;;
 ;; INSTALLATION
 ;;
-;; If you install from melpa: No need to require anything, just set the key as described below. 
-;; If you install manually:
-;;    (require 'greek-unicode-insert)
+;; If you install from melpa: nothing necessary, should work out of the box.
+;; If you install manually: (require 'greek-unicode-insert)
+;;
+;; In either case, remember to bind the keymap to something (as described above).
 ;;    (global-set-key "\M-8" 'greek-unicode-insert-map)
 
 ;;; License:
@@ -39,13 +50,17 @@
 ;; 
 
 ;;; Change Log:
+;; 1.1 - 20130804 - Updated doc.
+;; 1.1 - 20130804 - Simplified everything.
 ;; 1.0 - 20130728 - Created File.
 ;;; Code:
 
+
 ;;;###autoload
 (progn
-  
   (define-prefix-command 'greek-unicode-insert-map)
+  (global-set-key greek-unicode-insert-key 'greek-unicode-insert-map)
+
   ;; Lowercase Greek
   (define-key greek-unicode-insert-map "\M-s" "ς")
   (define-key greek-unicode-insert-map "a" "α")
@@ -120,6 +135,7 @@
   (define-key greek-unicode-insert-map "$" "∬")
   (define-key greek-unicode-insert-map "\M-4" "∮")
   (define-key greek-unicode-insert-map "\M-$" "∯")
+
   ;; Arrows
   (define-key greek-unicode-insert-map "" "→")
   (define-key greek-unicode-insert-map [right] "→")
