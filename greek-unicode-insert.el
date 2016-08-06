@@ -59,7 +59,8 @@
 ;;;###autoload
 (progn
   (define-prefix-command 'greek-unicode-insert-map)
-  (global-set-key greek-unicode-insert-key 'greek-unicode-insert-map)
+  (when (boundp 'greek-unicode-insert-key)
+    (global-set-key greek-unicode-insert-key 'greek-unicode-insert-map))
 
   ;; Lowercase Greek
   (define-key greek-unicode-insert-map "\M-s" "ς")
